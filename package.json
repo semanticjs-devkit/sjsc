@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/semanticjs-devkit/sjsc/issues"
   },
-  "homepage": "https://github.com/semanticjs-devkit/sjsc#readme"
+  "homepage": "https://github.com/semanticjs-devkit/sjsc#readme",
+  "devDependencies": {
+    "typescript": "^4.3.5"
+  }
 }
