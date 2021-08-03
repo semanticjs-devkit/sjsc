@@ -19,7 +19,7 @@ $ npm install -g @semanticjs/sjsc
 $ sjsc COMMAND
 running command...
 $ sjsc (-v|--version|version)
-@semanticjs/sjsc/0.0.0 win32-x64 node-v14.15.3
+@semanticjs/sjsc/0.0.1 win32-x64 node-v14.15.3
 $ sjsc --help [COMMAND]
 USAGE
   $ sjsc COMMAND
@@ -49,7 +49,7 @@ EXAMPLE
   hello world from ./src/hello.ts!
 ```
 
-_See code: [src/commands/hello.ts](https://github.com/semanticjs-devkit/sjsc/blob/v0.0.0/src/commands/hello.ts)_
+_See code: [src/commands/hello.ts](https://github.com/semanticjs-devkit/sjsc/blob/v0.0.1/src/commands/hello.ts)_
 
 ## `sjsc help [COMMAND]`
 

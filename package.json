@@ -1,7 +1,7 @@
 {
   "name": "@semanticjs/sjsc",
   "description": "The SemanticJS CLI",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": "Michael Gearhardt @mcgear",
   "bin": {
     "sjsc": "./bin/run"
@@ -48,8 +48,8 @@
   },
   "repository": "semanticjs-devkit/sjsc",
   "scripts": {
-		"deploy": "npm version patch && npm run deploy:all",
-		"deploy:all": "npm publish ./bin --access public",
+    "deploy": "npm version patch && npm run deploy:all",
+    "deploy:all": "npm publish ./bin --access public",
     "postpack": "rimraf oclif.manifest.json",
     "posttest": "eslint . --ext .ts --config .eslintrc",
     "prepack": "rimraf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
