@@ -6,11 +6,11 @@ export class ExecService {
 
     var child = exec(command);
     
-    child.stdout.on('data', (data) => {
+    child?.stdout?.on('data', (data) => {
         log(data);
     });
 
-    child.stderr.on('data', (data) => {
+    child?.stderr?.on('data', (data) => {
       log(data);
     });
 
