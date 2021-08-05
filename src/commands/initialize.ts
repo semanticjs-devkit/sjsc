@@ -32,6 +32,8 @@ export default class Initialize extends SJSCCommand {
 
     await this.execute("npm i concurrently --save-dev");
 
+    await this.execute("npm i @semanticjs/common@latest --save");
+
     //  Not running this, adding tsconfig.json manually
     // res = await this.execute("npx tsc --init");
 
