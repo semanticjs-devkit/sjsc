@@ -28,28 +28,10 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`sjsc hello [FILE]`](#sjsc-hello-file)
 * [`sjsc help [COMMAND]`](#sjsc-help-command)
-
-## `sjsc hello [FILE]`
-
-describe the command here
-
-```
-USAGE
-  $ sjsc hello [FILE]
-
-OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
-
-EXAMPLE
-  $ sjsc hello
-  hello world from ./src/hello.ts!
-```
-
-_See code: [src/commands/hello.ts](https://github.com/semanticjs-devkit/sjsc/blob/v0.0.1/src/commands/hello.ts)_
+* [`sjsc initialize [ORGANIZATION] [REPOSITORY]`](#sjsc-initialize-organization-repository)
+* [`sjsc new [FILE]`](#sjsc-new-file)
+* [`sjsc sjsc-command`](#sjsc-sjsc-command)
 
 ## `sjsc help [COMMAND]`
 
@@ -67,4 +49,46 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.2/src/commands/help.ts)_
+
+## `sjsc initialize [ORGANIZATION] [REPOSITORY]`
+
+Initialize a new SemanticJS project.
+
+```
+USAGE
+  $ sjsc initialize [ORGANIZATION] [REPOSITORY]
+
+OPTIONS
+  -h, --help  show CLI help
+
+ALIASES
+  $ sjsc init
+```
+
+_See code: [src/commands/initialize.ts](https://github.com/semanticjs-devkit/sjsc/blob/v0.0.1/src/commands/initialize.ts)_
+
+## `sjsc new [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ sjsc new [FILE]
+
+OPTIONS
+  -f, --force
+  -h, --help       show CLI help
+  -n, --name=name  name to print
+```
+
+_See code: [src/commands/new.ts](https://github.com/semanticjs-devkit/sjsc/blob/v0.0.1/src/commands/new.ts)_
+
+## `sjsc sjsc-command`
+
+```
+USAGE
+  $ sjsc sjsc-command
+```
+
+_See code: [src/commands/sjsc-command.ts](https://github.com/semanticjs-devkit/sjsc/blob/v0.0.1/src/commands/sjsc-command.ts)_
 <!-- commandsstop -->
