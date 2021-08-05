@@ -19,7 +19,7 @@ $ npm install -g @semanticjs/sjsc
 $ sjsc COMMAND
 running command...
 $ sjsc (-v|--version|version)
-@semanticjs/sjsc/0.0.1 win32-x64 node-v14.15.3
+@semanticjs/sjsc/0.0.2 win32-x64 node-v14.15.3
 $ sjsc --help [COMMAND]
 USAGE
   $ sjsc COMMAND
@@ -30,7 +30,7 @@ USAGE
 <!-- commands -->
 * [`sjsc help [COMMAND]`](#sjsc-help-command)
 * [`sjsc initialize [ORGANIZATION] [REPOSITORY]`](#sjsc-initialize-organization-repository)
-* [`sjsc new [FILE]`](#sjsc-new-file)
+* [`sjsc new [BLOCK] [NAME]`](#sjsc-new-block-name)
 * [`sjsc sjsc-command`](#sjsc-sjsc-command)
 
 ## `sjsc help [COMMAND]`
@@ -65,23 +65,26 @@ ALIASES
   $ sjsc init
 ```
 
-_See code: [src/commands/initialize.ts](https://github.com/semanticjs-devkit/sjsc/blob/v0.0.1/src/commands/initialize.ts)_
+_See code: [src/commands/initialize.ts](https://github.com/semanticjs-devkit/sjsc/blob/v0.0.2/src/commands/initialize.ts)_
 
-## `sjsc new [FILE]`
+## `sjsc new [BLOCK] [NAME]`
 
-describe the command here
+Used to create new blocks of the SemanticJS framework.
 
 ```
 USAGE
-  $ sjsc new [FILE]
+  $ sjsc new [BLOCK] [NAME]
 
 OPTIONS
-  -f, --force
+  -e, --export     When flagged, sets up the module export for the new class.
   -h, --help       show CLI help
-  -n, --name=name  name to print
+  -p, --path=path  The path within src to include the file (should start with '/').
+
+ALIASES
+  $ sjsc n
 ```
 
-_See code: [src/commands/new.ts](https://github.com/semanticjs-devkit/sjsc/blob/v0.0.1/src/commands/new.ts)_
+_See code: [src/commands/new.ts](https://github.com/semanticjs-devkit/sjsc/blob/v0.0.2/src/commands/new.ts)_
 
 ## `sjsc sjsc-command`
 
@@ -90,5 +93,5 @@ USAGE
   $ sjsc sjsc-command
 ```
 
-_See code: [src/commands/sjsc-command.ts](https://github.com/semanticjs-devkit/sjsc/blob/v0.0.1/src/commands/sjsc-command.ts)_
+_See code: [src/commands/sjsc-command.ts](https://github.com/semanticjs-devkit/sjsc/blob/v0.0.2/src/commands/sjsc-command.ts)_
 <!-- commandsstop -->
