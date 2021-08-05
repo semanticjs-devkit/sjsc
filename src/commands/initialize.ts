@@ -61,10 +61,10 @@ export default class Initialize extends SJSCCommand {
   }
 
   protected async configurePackageJson(args: { [name: string]: any }) {
-    const pkgJsonStr = await readFile("package.json", "utf-8");
+    const pkgJsonStr = await readFile("package.json");
 
     const pkgJson = {
-      ...JSON.parse(pkgJsonStr),
+      ...JSON.parse(pkgJsonStr.toString()),
       name: `@${args.organization}/${args.repository}`,
       version: "0.0.0",
       main: "./packages/cjs/common.js",
