@@ -1,5 +1,5 @@
 @semanticjs/sjsc
-=================
+==================
 
 The SemanticJS CLI
 
