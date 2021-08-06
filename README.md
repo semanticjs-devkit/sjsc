@@ -19,7 +19,7 @@ $ npm install -g @semanticjs/sjsc
 $ sjsc COMMAND
 running command...
 $ sjsc (-v|--version|version)
-@semanticjs/sjsc/0.0.4 win32-x64 node-v14.15.3
+@semanticjs/sjsc/0.0.5 win32-x64 node-v14.15.3
 $ sjsc --help [COMMAND]
 USAGE
   $ sjsc COMMAND
@@ -65,7 +65,7 @@ ALIASES
   $ sjsc init
 ```
 
-_See code: [src/commands/initialize.ts](https://github.com/semanticjs-devkit/sjsc/blob/v0.0.4/src/commands/initialize.ts)_
+_See code: [src/commands/initialize.ts](https://github.com/semanticjs-devkit/sjsc/blob/v0.0.5/src/commands/initialize.ts)_
 
 ## `sjsc new [BLOCK] [NAME]`
 
@@ -84,7 +84,7 @@ ALIASES
   $ sjsc n
 ```
 
-_See code: [src/commands/new.ts](https://github.com/semanticjs-devkit/sjsc/blob/v0.0.4/src/commands/new.ts)_
+_See code: [src/commands/new.ts](https://github.com/semanticjs-devkit/sjsc/blob/v0.0.5/src/commands/new.ts)_
 
 ## `sjsc sjsc-command`
 
@@ -93,5 +93,5 @@ USAGE
   $ sjsc sjsc-command
 ```
 
-_See code: [src/commands/sjsc-command.ts](https://github.com/semanticjs-devkit/sjsc/blob/v0.0.4/src/commands/sjsc-command.ts)_
+_See code: [src/commands/sjsc-command.ts](https://github.com/semanticjs-devkit/sjsc/blob/v0.0.5/src/commands/sjsc-command.ts)_
 <!-- commandsstop -->
