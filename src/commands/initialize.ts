@@ -3,6 +3,7 @@ import cli from "cli-ux";
 import { ExecService } from "../services/exec";
 import { copy, ensureDir, ensureFile, readFile, writeFile } from "fs-extra";
 import SJSCCommand from "./sjsc-command";
+import SJSConfig from "../models/SJSConfig";
 
 export default class Initialize extends SJSCCommand {
   static aliases = ["init"];
@@ -30,7 +31,7 @@ export default class Initialize extends SJSCCommand {
 
     await this.execute("npm i jest @types/jest ts-jest --save-dev");
 
-    await this.execute("npm i concurrently --save-dev");
+    await this.execute("npm i concurrently rimraf --save-dev");
 
     await this.execute("npm i @semanticjs/common@latest --save");
 
@@ -39,7 +40,7 @@ export default class Initialize extends SJSCCommand {
 
     await ensureDir("src");
 
-    await ensureFile(`src/${args.repository}.ts`);
+    await ensureFile(`src/index.ts`);
 
     await ensureDir("testing/unit");
 
@@ -57,8 +58,8 @@ export default class Initialize extends SJSCCommand {
 
     await this.configurePackageJson(args);
 
-    //  TODO: Setup .semanticjs.config.json
-
+    await this.inintializeSJSConfig(args);
+    
     await this.execute("npm i");
   }
 
@@ -82,8 +83,7 @@ export default class Initialize extends SJSCCommand {
       "build:es": "tsc -p tsconfig.es.json",
       "build:cjs": "tsc -p tsconfig.cjs.json",
       "deploy": "npm version patch && npm run deploy:all",
-      "deploy:all": "npm publish ./packages --access public",
-      "prepublishOnly": "npm run build",
+      "deploy:all": "rimraf packages && npm run build && npm publish ./packages --access public",
       "test": "jest",
       "test:coverage": "jest --coverage",
       "watch": "npm run watch:es",
@@ -122,53 +122,60 @@ module.exports = {
     await writeFile("jest.config.js", jestConfig);
   }
 
-  protected async inintializeTsConfig() {
-    const tsconfig = `
-{
-  "compilerOptions": {
-    "target": "es2017",
-    "module": "es2020",
-    "outDir": "./packages",
-    "declaration": true,
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
-  },
-  "include": ["./src"]
-}    
-    `;
+  protected async inintializeSJSConfig(args: { [name: string]: any }) {
+    const sjsCfg: SJSConfig = 
+    {
+      Organization: args.organization,
+      Repository: args.repository
+    };
 
-    await writeFile("tsconfig.json", tsconfig);
+    await this.writeSJSConfig(sjsCfg);
+  }
+
+  protected async inintializeTsConfig() {
+    const tsconfig = 
+    {
+      "compilerOptions": {
+        "target": "es2017",
+        "module": "es2020",
+        "outDir": "./packages",
+        "declaration": true,
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
+      },
+      "include": ["./src"]
+    };
+
+    await writeFile("tsconfig.json", JSON.stringify(tsconfig));
   }
 
   protected async inintializeTsConfigCJS() {
-    const tsconfig = `
-{
-  "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "module": "commonjs",    
-    "outDir": "./packages/cjs"
-  }
-}      
-    `;
+    const tsconfig = 
+    {
+      "extends": "./tsconfig.json",
+      "compilerOptions": {
+        "module": "commonjs",    
+        "outDir": "./packages/cjs"
+      }
+    };
 
-    await writeFile("tsconfig.cjs.json", tsconfig);
+    await writeFile("tsconfig.cjs.json", JSON.stringify(tsconfig));
   }
 
   protected async inintializeTsConfigES() {
-    const tsconfig = `
-{
-  "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "module": "es2020",
-    "outDir": "./packages/es"
-  }
-}
-    `;
+    const tsconfig = 
+    {
+      "extends": "./tsconfig.json",
+      "compilerOptions": {
+        "module": "es2020",
+        "outDir": "./packages/es"
+      }
+    };
 
-    await writeFile("tsconfig.es.json", tsconfig);
+    await writeFile("tsconfig.es.json", JSON.stringify(tsconfig));
   }
 }

@@ -1,7 +1,9 @@
-import { Command, flags } from "@oclif/command";
-import { ensureDir, writeFile } from "fs-extra";
+import { flags } from "@oclif/command";
+import { StringUtils } from "@semanticjs/common";
+import { ensureDir, readFile, writeFile } from "fs-extra";
+import SJSCCommand from "./sjsc-command";
 
-export default class New extends Command {
+export default class New extends SJSCCommand {
   static aliases = ["n"];
 
   static description = "Used to create new blocks of the SemanticJS framework.";
@@ -41,7 +43,7 @@ export default class New extends Command {
     shouldExport: boolean
   ) {
     const template = `
-export default class ${name} {
+export class ${name} {
   //  Fields
   protected example?: boolean;
 
@@ -70,8 +72,49 @@ export default class ${name} {
     await writeFile(`src${path}/${name}.ts`, template);
 
     if (shouldExport) {
-      //  TODO:  setup module export
-      console.log("should export");
+      this.addClassToModule(name, path);
     }
+
+    //  TODO:  setup JEST tests for class in testing/unit
+  }
+
+  protected async addClassToModule(name: string, path: string) {
+    const moduleBuf = await readFile(`src/index.ts`);
+
+    const moduleLines = await StringUtils.ReadLines(moduleBuf);
+
+    for (const ml of moduleLines) {
+      console.log(ml);
+    }
+
+    const importLines = moduleLines.filter((ml) => ml.startsWith("import"));
+
+    importLines.push(`import { ${name} } from '.${path}/${name}'`);
+
+    // const exportedStr = exportLine?.length == 0 ? '{}' : <string>exportLine?.substring(0, exportLine.length - 1).replace('export ', '');
+
+    const exports: string[] = [];
+
+    importLines.forEach(il => {
+      const fromParts = il.split('from');
+
+      const braceParts = fromParts[0].split('{');
+
+      const closeBraceParts = braceParts[1].split('}');
+
+      const className = closeBraceParts[0].trim();
+
+      exports.push(className);
+    });
+
+    const moduleStrParts = [];
+    
+    importLines.forEach(il => moduleStrParts.push(`${il}`));
+
+    moduleStrParts.push('');
+
+    moduleStrParts.push(`export { ${exports.join(',')} };`);
+
+    await writeFile('src/index.ts', moduleStrParts.join('\n'));
   }
 }

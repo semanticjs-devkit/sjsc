@@ -14,6 +14,9 @@ export default class Initialize extends SJSCCommand {
     }): Promise<void>;
     protected inintializeGitIgnore(): Promise<void>;
     protected inintializeJestConfig(): Promise<void>;
+    protected inintializeSJSConfig(args: {
+        [name: string]: any;
+    }): Promise<void>;
     protected inintializeTsConfig(): Promise<void>;
     protected inintializeTsConfigCJS(): Promise<void>;
     protected inintializeTsConfigES(): Promise<void>;
