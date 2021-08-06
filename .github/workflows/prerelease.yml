@@ -41,14 +41,14 @@ jobs:
     # replace text in package.json
     - name: replace tag text
       shell: pwsh
-      run: (Get-Content -path package.json -Raw) -replace "--access public","--access public --tag ${{ steps.vars.outputs.branchName }}" | Set-Content -Path package.json
+      run: (Get-Content -path package.json -Raw) -replace "--access public","--access public --tag ${{ steps.vars.outputs.short_ref }}" | Set-Content -Path package.json
 
     - name: replace version text
       shell: pwsh
-      run: (Get-Content -path package.json -Raw) -replace "version patch","version ${{ steps.versionBump.outputs.new_tag }}-${{ steps.vars.outputs.branchName }} --no-git-tag-version -f" | Set-Content -Path package.json
+      run: (Get-Content -path package.json -Raw) -replace "version patch","version ${{ steps.versionBump.outputs.new_tag }}-${{ steps.vars.outputs.short_ref }} --no-git-tag-version -f" | Set-Content -Path package.json
 
     - name: replace slash with dash in branch name
-      if: ${{ steps.vars.outputs.branchName != 'integration' }}
+      if: ${{ steps.vars.outputs.short_ref != 'integration' }}
       shell: pwsh
       run: (Get-Content -path package.json -Raw) -replace "feature/","feature-" | Set-Content -Path package.json
 
